@@ -4,13 +4,12 @@
 **This is a prototype. Do NOT expect working product**
 
 The kid receives contingent of several hours on the internet for the  week. The contingent (accumulated time) can be distributed over different devices by the kid.
-The kid can control the internet on different devices, like phone or PS4. It is possible to set timer for how  long  the internet is active (timer) or manually switch it on and off. 
+The kid can control the internet on different devices, like phone or PS4. It is possible to set timer for how long the internet is active (timer) or manually switch it on and off. 
 
 ## Preconditions
 
-Using AVM Fritz Box router and currently two profiles - one for PS4 and one for Phone (or any two)
-
-Web server in your home network supporting CGI, UNIX(BASH).For be this was NAS server 
+- Using AVM Fritz Box router and currently two profiles - one for PS4 and one for Phone (or any two)
+- Web server in your home network supporting CGI, UNIX(BASH).For be this was NAS server 
 
 ## Install 
 
@@ -23,11 +22,11 @@ Web server in your home network supporting CGI, UNIX(BASH).For be this was NAS s
 
 done 
 
-## TBD
+## What is next (TBD)
 
-(FEATURE) Support more devices 
-(IMPROVEMENT) the folder structure 
-(IMPROVEMENT) Securty of cred file
-(BUG) Race condition
-(BUG) UI protection
-(FEATURE) Package is with thiny server - all in one 
+- (FEATURE) Support more devices 
+- (IMPROVEMENT) the folder structure 
+- (IMPROVEMENT) Securty of cred file
+- (BUG) Race condition
+- (BUG) UI protection
+- (FEATURE) Package is with thiny server - all in one 
