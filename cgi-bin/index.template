@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
+}
+</style>
+</head>
+<body>
+<script>
+// Set the date we're counting down to
+//var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+var playSecondsPhone = ${phone_2_play};
+var playSecondsPS4 = ${ps4_2_play};
+var countDownSeconds=0;
+
+// return padded time component
+function getTimePadded(sec, div, mod) {
+	console.log(sec, div, mod)
+    var v=Math.floor(sec / div) % mod;
+    console.log(v)
+    return v.toString().padStart(2, '0');
+}
+
+function setValues(clockId, buttonId, restSeconds) {
+  // Set the rest time 
+  var hours =  getTimePadded(restSeconds,3600,24);
+  var minutes = getTimePadded(restSeconds,60,60);
+  var seconds = getTimePadded(restSeconds,1,60);
+    
+  // If the count down is over, write some text 
+  if (restSeconds< 0) {
+        document.getElementById(clockId).innerHTML = "inactive";
+        document.getElementById(buttonId).innerHTML = "START +30min";
+    	document.getElementById(buttonId).className = "w3-round w3-button w3-green"
+  } else {
+  // Output the result in an element with id="demo"
+        document.getElementById(clockId).innerHTML =  hours + ":" + minutes + ":" + seconds ;
+  	document.getElementById(buttonId).innerHTML = "Add 30min";
+  	document.getElementById(buttonId).className = "w3-round w3-button w3-blue"
+ }
+}
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Decrease the time
+  countDownSeconds=countDownSeconds+1;
+
+  // Set the phone rest time  
+  setValues("phone", "startPhone", playSecondsPhone- countDownSeconds)
+  
+  // Set the ps4 date 
+    setValues("ps4", "startPS4", playSecondsPS4 -  countDownSeconds)
+ 
+}, 1000);
+</script>
+<div class="w3-panel w3-padding-16 " style="background-color:Cornsilk;text-align: center;">
+Phone
+<p id="phone" class="w3-container w3-extralarge"></p>
+<div class="w3-container">
+	<a id="startPhone" href="add30.sh?device=phone" class="w3-round w3-button w3-green">START +30min</a>
+    <a href="stop.sh?device=phone" class="w3-round w3-button w3-red">Stop</a>
+</div>
+</div>
+<div class="w3-panel w3-padding-16" style="background-color:AliceBlue;text-align: center;">
+PS4
+<p id="ps4" class="w3-container w3-extralarge"></p>
+<div class="w3-container">
+	<a id="startPS4" href="add30.sh?device=ps4" class="w3-round w3-button w3-green">START +30min</a>
+    <a href="stop.sh?deivce=ps4" class="w3-round w3-button w3-red">Stop</a>
+</div>
+</div>
+<p id="total_time" class="w3-container  w3-small">Rest of week time: <b> ${rest} </b> </p>
+<p id="total_time" class="w3-container  w3-small">Total of week time: ${total} min</p>
+</body>
+
