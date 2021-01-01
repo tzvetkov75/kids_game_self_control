@@ -1,4 +1,4 @@
-. ./avm_cred.sh
+. ./bin/avm_cred.sh
 
 avmfbip=${tempip:-fritz.box}
 avmfbuser=${tempuser:-""}

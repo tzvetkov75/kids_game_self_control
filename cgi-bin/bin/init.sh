@@ -1,15 +1,14 @@
 week_to_play_seconds="63000" # 2.5 x 7 x 3600
 
-cd ../db 
 
-date +"%s" > ps4_stop_date.txt
-date +"%s" > phone_stop_date.txt
-echo $week_to_play_seconds > total.txt
+date +"%s" > ./db/ps4_stop_date.txt
+date +"%s" > ./db/phone_stop_date.txt
+echo $week_to_play_seconds > ./db/total.txt
 
-if test -f "rest.txt"; then 
-	rest=$(cat rest.txt) 
+if test -f "./db/rest.txt"; then 
+	rest=$(cat ./db/rest.txt) 
 	rest=$(($rest + $week_to_play_seconds))
-	echo $rest > rest.txt
+	echo $rest > ./db/rest.txt
 else
-	echo $week_to_play_seconds > rest.txt
+	echo $week_to_play_seconds > ./db/rest.txt
 fi 

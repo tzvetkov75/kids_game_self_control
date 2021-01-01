@@ -17,8 +17,8 @@ The kid can control the internet on different devices, like phone or PS4. It is 
 - Edit ./cgi-bin/bin/\*_stop.sh and \*_start.sh to correspond to your  profile controls URLS. You can get them by looking at the browser dev tools (network) when you manually activate internet on the profile 
 - Edit ./cgi-bin/bin/init.sh to set the  weekly allowed time 
 - execute ./cgi-bin/bin/init.sh to set the values 
-- set cronjob to run the init.sh evey week to charge the profile 
-`5 5 * * 1 cd /usr/lib/cgi-bin/bin/ && init.sh` 
+- set cronjob to run the init.sh evey week to charge the profile with init script. For example (fix the dir) 
+`5 5 * * 1 cd /usr/lib/cgi-bin/ && ./bin/init.sh` 
 
 done 
 

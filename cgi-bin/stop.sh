@@ -1,7 +1,7 @@
 #!/bin/bash
+set -e
 
-cd bin
-. ./funcs.sh 
+. ./bin/funcs.sh 
 
 # find out the device 
 if [[ "$QUERY_STRING" =~ "ps4" ]]; then 
@@ -11,7 +11,7 @@ else
 fi
 
 # Get the current date to stop 
-stop_date=$(cat "../db/${device}_stop_date.txt")
+stop_date=$(cat "./db/${device}_stop_date.txt")
 
 n=$(date +"%s")
 
@@ -24,16 +24,14 @@ fi
 seconds_to_return=$(( $stop_date - $n ))
 
 # add to total 
-rest=$(cat ../db/rest.txt)
-echo $(($rest+$seconds_to_return)) > ../db/rest.txt 
-echo $(( $n - 1)) > "../db/${device}_stop_date.txt"
+rest=$(cat ./db/rest.txt)
+echo $(($rest+$seconds_to_return)) > ./db/rest.txt 
+echo $(( $n - 1)) > "./db/${device}_stop_date.txt"
 
 redirect
-cd ../db/
 set_jobs
 
 #  block internet access  
-cd ../bin/
-./${device}_stop.sh
+./bin/${device}_stop.sh
 
 logger -p local0.notice "CaleControl: Stoppped  device:[$device] seconds_to_return:[$seconds_to_return]"
