@@ -2,6 +2,8 @@
 set -e
 
 . ./bin/funcs.sh 
+# avoid parallel 
+lock
 
 # find out the device 
 if [[ "$QUERY_STRING" =~ "ps4" ]]; then 
@@ -33,5 +35,6 @@ set_jobs
 
 #  block internet access  
 ./bin/${device}_stop.sh
+unlock 
 
 logger -p local0.notice "CaleControl: Stoppped  device:[$device] seconds_to_return:[$seconds_to_return]"

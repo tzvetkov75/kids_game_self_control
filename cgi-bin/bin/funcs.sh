@@ -38,3 +38,19 @@ function set_jobs {
     logger -p local0.notice "CaleControl: set job to stop internet on  device:[phone] at phone_stop_date:["$(date -d "@$phone_stop_date")"]"
   fi
 }
+
+function lock {
+  logger -p local0.notice "CaleControl: locking (parallel execution)"
+  if test -f "/tmp/lock.tmp"; then 
+	logger -p local0.notice "CaleControl: already locked exiting (parallel execution)"
+        redirect	
+	exit
+  else
+	touch "/tmp/lock.tmp"
+  fi 
+}
+
+function unlock {
+  logger -p local0.notice "CaleControl: unlock (parallel execution)"
+  rm  "/tmp/lock.tmp" || echo "no lock"
+}

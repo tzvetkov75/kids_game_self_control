@@ -7,6 +7,8 @@ set -e
 time_to_add=1800
 
 . ./bin/funcs.sh 
+# avoid paralel execution, who knows what will happen 
+lock 
 
 rest=$(cat ./db/rest.txt)
 
@@ -47,6 +49,6 @@ echo $new_stop_date > "./db/${device}_stop_date.txt"
 
 redirect
 set_jobs
-
+unlock 
 logger -p local0.notice "CaleControl: Added 30 min device:[$device] new_stop_date:["$(date -d "@$new_stop_date")"]"
 
