@@ -54,3 +54,4 @@ function unlock {
   logger -p local0.notice "CaleControl: unlock (parallel execution)"
   rm  "/tmp/lock.tmp" || echo "no lock"
 }
+

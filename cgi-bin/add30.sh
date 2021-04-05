@@ -52,3 +52,4 @@ set_jobs
 unlock 
 logger -p local0.notice "CaleControl: Added 30 min device:[$device] new_stop_date:["$(date -d "@$new_stop_date")"]"
 
+

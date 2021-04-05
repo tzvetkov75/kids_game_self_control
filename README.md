@@ -10,6 +10,7 @@ The kid can control the internet on different devices, like phone or PS4. It is 
 
 - Using AVM Fritz Box router and currently two profiles - one for PS4 and one for Phone (or any two)
 - Web server in your home network supporting CGI, UNIX(BASH).For be this was NAS server 
+-  *at* and *atq* unix command, for debian *apt-get install at*
 
 ## Install 
 
@@ -19,7 +20,7 @@ The kid can control the internet on different devices, like phone or PS4. It is 
 - execute ./cgi-bin/bin/init.sh to set the values 
 - set cronjob to run the init.sh evey week to charge the profile with init script. For example (fix the dir) 
 `5 5 * * 1 cd /usr/lib/cgi-bin/ && ./bin/init.sh` 
-
+- allow the httpd deamon user, like apache, to execute *at* command, aka add user, ile www-data, to */etc/at.allow* 
 done 
 
 ## What is next (TBD)
@@ -27,5 +28,8 @@ done
 - (FEATURE) Support more devices 
 - (IMPROVEMENT) the folder structure 
 - (IMPROVEMENT) Securty of cred file
-- (BUG) UI protection
+- (BUG) UI disable buttons ones clicked (dubble click(
 - (FEATURE) Package is with thiny server - all in one 
+- (IMPROVEMENT) sync status between the router and application: out of sync problem
+- (FEATURE) CGI script errors output missing 
+- (BUG) test cases 

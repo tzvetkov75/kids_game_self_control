@@ -30,11 +30,10 @@ rest=$(cat ./db/rest.txt)
 echo $(($rest+$seconds_to_return)) > ./db/rest.txt 
 echo $(( $n - 1)) > "./db/${device}_stop_date.txt"
 
-redirect
-set_jobs
-
 #  block internet access  
 ./bin/${device}_stop.sh
-unlock 
 
+set_jobs
 logger -p local0.notice "CaleControl: Stoppped  device:[$device] seconds_to_return:[$seconds_to_return]"
+redirect
+unlock 
