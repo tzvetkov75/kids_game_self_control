@@ -20,6 +20,7 @@ n=$(date +"%s")
 # if the time is over then exit 
 if [[ $stop_date < $n ]]; then 
 	redirect
+	unlock 
 	exit 
 fi 
 

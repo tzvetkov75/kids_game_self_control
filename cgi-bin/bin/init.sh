@@ -4,7 +4,7 @@ date +"%s" > ./db/ps4_stop_date.txt
 date +"%s" > ./db/phone_stop_date.txt
 echo $week_to_play_seconds > ./db/total.txt
 
-if test -f "rest.txt"; then 
+if test -f "./db/rest.txt"; then 
 	rest=$(cat ./db/rest.txt) 
 	rest=$(($rest + $week_to_play_seconds))
 	echo $rest > ./db/rest.txt
