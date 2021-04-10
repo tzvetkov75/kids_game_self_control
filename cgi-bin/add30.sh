@@ -15,6 +15,8 @@ rest=$(cat ./db/rest.txt)
 # check if time avalable possible
 if [[ $rest < 0 ]]; then 
 	# play time finished 
+        logger -p local0.notice "CaleControl: ignorring request to start internet, since no time left"
+	unlock
 	redirect
 	exit 
 fi
