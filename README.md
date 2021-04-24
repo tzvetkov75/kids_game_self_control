@@ -15,13 +15,20 @@ The kid can control the internet on different devices, like phone or PS4. It is 
 ## Install 
 
 - Edit ./cgi-bin/bin/avm_cred.sh to correspond to your credentials and IP
-- Edit if needed  ./cgi-bin/bin/\*_stop.sh and \*_start.sh to correspond to your profile controls URLS. You can get the commands  by exemining with browser dev tools (network) when you manually activate internet on the profile. Currenlty AVM Firtz!Box curls for profiles PS4,Kinder   
+- Edit if needed  ./cgi-bin/bin/api_command.sh  to correspond to your profile controls URLS. You can get the commands  by exemining with browser dev tools (network) when you manually activate internet on the profile. Currenlty AVM Firtz!Box curls for profiles PS4,Kinder   
 - Edit ./cgi-bin/bin/init.sh to set the  weekly allowed time 
 - execute ./cgi-bin/bin/init.sh to set the values 
 - set cronjob to run the init.sh evey week to charge the profile with init script. For example (fix the dir) 
 `5 5 * * 1 cd /usr/lib/cgi-bin/ && ./bin/init.sh` 
 - allow the httpd deamon user, like apache, to execute *at* command, aka add user, ile www-data, to */etc/at.allow* 
 done 
+
+## Usage 
+
+- ./cgi-bin/show.sh  - show status and control start or stop
+- ./cgi-bin/show_status.sh  - show status out of the avm router (the real source of truth) 
+
+*Note: the dir depends on your cgi server insatllation
 
 ## What is next (TBD)
 

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/w3.css">
 <style>
 p {
   text-align: center;
@@ -76,7 +76,9 @@ PS4
     <a href="stop.sh?deivce=ps4" class="w3-round w3-button w3-red">Stop</a>
 </div>
 </div>
-<p id="total_time" class="w3-container  w3-small">Rest of week time: <b> ${rest} </b> </p>
-<p id="total_time" class="w3-container  w3-small">Total of week time: ${total} min</p>
+<p id="rest_time" class="w3-container  w3-small">Rest of week time: <b> ${rest} </b> </p>
+<p id="total_time" class="w3-container w3-blue-grey  w3-small">Played time week: ${played} </p>
+<p id="total_time" class="w3-container  w3-small">Total of week time: ${total} </p>
+<p id="status" class="w3-container w3-small">status: ${status} </p>
 </body>
 

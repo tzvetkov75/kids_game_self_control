@@ -1,7 +1,5 @@
 
 function redirect {
-  # provide the reditect web page 
-  printf "Content-type: text/html\n\n"
 
   echo """
   <!DOCTYPE HTML>
@@ -21,7 +19,6 @@ function set_jobs {
   for i in `atq | awk '{print $1}'`;do atrm $i;done
   logger -p local0.notice "CaleControl: scheduled jobs (at) for stopping internet cleared (deleted)"
   
-  redirect
   # set a new job to stop 
 
   n=$(date +"%s")
@@ -29,29 +26,28 @@ function set_jobs {
   phone_stop_date=$(cat ./db/phone_stop_date.txt)
   
   if [[ $n < $ps4_stop_date ]]; then 
-    echo "./bin/ps4_stop.sh" | at $(date -d "@$ps4_stop_date" +"%H:%M") 
+    echo "./bin/ps4_stop.sh" | at $(date -d "@$ps4_stop_date" +"%H:%M") > /dev/null 
     logger -p local0.notice "CaleControl: set job to stop internet on device:[ps4] at ps4_stop_date:["$(date -d "@$ps4_stop_date")"]"
 
   fi 
   if [[ $n < $phone_stop_date ]]; then
-    echo "./bin/phone_stop.sh" | at $(date -d "@$phone_stop_date" +"%H:%M") 
+    echo "./bin/phone_stop.sh" | at $(date -d "@$phone_stop_date" +"%H:%M") > /dev/null
     logger -p local0.notice "CaleControl: set job to stop internet on  device:[phone] at phone_stop_date:["$(date -d "@$phone_stop_date")"]"
   fi
 }
 
 function lock {
   logger -p local0.notice "CaleControl: locking (parallel execution)"
-  if test -f "/tmp/lock.tmp"; then 
+  if test -f "/tmp/calecontrol.lock"; then 
 	logger -p local0.notice "CaleControl: already locked exiting (parallel execution)"
         redirect	
 	exit
   else
-	touch "/tmp/lock.tmp"
+	touch "/tmp/calecontrol.lock"
   fi 
 }
 
 function unlock {
   logger -p local0.notice "CaleControl: unlock (parallel execution)"
-  rm  "/tmp/lock.tmp" || echo "no lock"
+  rm  "/tmp/calecontrol.lock" || logger -p local0.notice "CaleControl: nolock"
 }
-
