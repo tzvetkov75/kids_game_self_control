@@ -2,14 +2,14 @@
 #set -xve
 set -e 
 
-# content is page even error code 
-printf "Content-type: text/html\n\n"
 
 # const
 # deduction time  - 30 min
 time_to_add=1800
 
 . ./bin/funcs.sh 
+
+header_lock
 
 rest=$(cat ./db/rest.txt)
 

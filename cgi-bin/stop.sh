@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-# content is page even error code 
-printf "Content-type: text/html\n\n"
 
 . ./bin/funcs.sh 
+
+header_lock
 
 # find out the device 
 if [[ "$QUERY_STRING" =~ "ps4" ]]; then 

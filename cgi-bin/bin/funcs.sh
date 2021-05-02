@@ -1,4 +1,7 @@
 
+
+lock_file="db/calecontrol.lock"
+
 function redirect {
 
   echo """
@@ -12,6 +15,15 @@ function redirect {
   </body>
   </html>
   """
+  if [[ $1 != "nounlock" ]]; then 
+	unlock
+  fi
+}
+
+function header_lock {
+	# content is page even error code 
+	printf "Content-type: text/html\n\n"
+	lock
 }
 
 function set_jobs {
@@ -26,28 +38,31 @@ function set_jobs {
   phone_stop_date=$(cat ./db/phone_stop_date.txt)
   
   if [[ $n < $ps4_stop_date ]]; then 
-    echo "./bin/ps4_stop.sh" | at $(date -d "@$ps4_stop_date" +"%H:%M") > /dev/null 
+    echo "./bin/api_command.sh ps4 stop" | at $(date -d "@$ps4_stop_date" +"%H:%M") > /dev/null 
     logger -p local0.notice "CaleControl: set job to stop internet on device:[ps4] at ps4_stop_date:["$(date -d "@$ps4_stop_date")"]"
 
   fi 
   if [[ $n < $phone_stop_date ]]; then
-    echo "./bin/phone_stop.sh" | at $(date -d "@$phone_stop_date" +"%H:%M") > /dev/null
+    echo "./bin/api_command.sh phone stop" | at $(date -d "@$phone_stop_date" +"%H:%M") > /dev/null
     logger -p local0.notice "CaleControl: set job to stop internet on  device:[phone] at phone_stop_date:["$(date -d "@$phone_stop_date")"]"
   fi
 }
 
 function lock {
-  logger -p local0.notice "CaleControl: locking (parallel execution)"
-  if test -f "/tmp/calecontrol.lock"; then 
+  logger -p local0.notice "CaleControl: check for lock (parallel execution)"
+  find $lock_file -cmin +1 -exec rm {} \; || true
+  if test -f "$lock_file"; then 
 	logger -p local0.notice "CaleControl: already locked exiting (parallel execution)"
-        redirect	
+	sleep 5
+        redirect nounlock
 	exit
   else
-	touch "/tmp/calecontrol.lock"
+	logger -p local0.notice "CaleControl: locked"
+	touch $lock_file
   fi 
 }
 
 function unlock {
   logger -p local0.notice "CaleControl: unlock (parallel execution)"
-  rm  "/tmp/calecontrol.lock" || logger -p local0.notice "CaleControl: nolock"
+  rm  $lock_file || logger -p local0.notice "CaleControl: nolock"
 }

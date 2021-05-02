@@ -19,6 +19,7 @@ var playSecondsPhone = ${phone_2_play};
 var playSecondsPS4 = ${ps4_2_play};
 var countDownSeconds=0;
 
+
 // return padded time component
 function getTimePadded(sec, div, mod) {
 	console.log(sec, div, mod)

@@ -3,7 +3,8 @@
 avmfbip=${tempip:-fritz.box}
 avmfbuser=${tempuser:-""}
 avmfbpwd=${temppwd:-"password"}
-avmsidfile=${tempid:-db/avmsid}
+avmsidfile=${tempid:-/tmp/avmsid}
+
 
 if [ ! -f $avmsidfile ]; then
 	touch $avmsidfile

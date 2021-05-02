@@ -8,11 +8,6 @@
 device=$1
 oper=$2
 
-
-#
-#  Modify the commands for every device and operaiton. There must be device x operation profiles
-# 
-#   status all is command to show the status of all profiles, aka overview 
 ps4_start="back_to_page=%2Finternet%2Fkids_profilelist.lua&edit=filtprof6035&name=PS4&time=unlimited&timer_item_0=1900%3B1%3B127&timer_item_1=0300%3B0%3B127&budget=unlimited&bpjm=on&netappschosen=&choosenetapps=choose&apply=&lang=de&page=kids_profileedit"
 
 ps4_stop="back_to_page=%2Finternet%2Fkids_profilelist.lua&edit=filtprof6035&name=PS4&time=limited&graphState=0&timer_item_0=1915%3B1%3B127&timer_item_1=0300%3B0%3B127&budget=unlimited&disallow_guest=on&parental=on&filtertype=white&netappschosen=&choosenetapps=choose&apply=&lang=de&page=kids_profileedit"
